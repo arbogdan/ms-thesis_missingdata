@@ -4,7 +4,7 @@
 
 DATA bc_demo;
 set Biocycle_demographics.sas7bdat
-(rename=(idnum=pid highschool=hs married=marital nulliparous=null_par 			      phycat=pa_cat racecat3=race screenage=age smoker=smk));
+(rename=(idnum=pid highschool=hs married=marital nulliparous=null_par phycat=pa_cat racecat3=race screenage=age smoker=smk));
 label pid=“Study ID”
 	bc_ever=“Ever use birth control? (y/n)”
 	bmi=“Body mass index (kg/m^2)”
@@ -37,7 +37,7 @@ DATA bc_cyto;
 set cytokines.sas7dbat rename=(idnum=pid);
 label pid=“Study ID”
 	cycle=“Cycle indicator: 1st or 2nd”
-	day=“Cycle phase (stand. day)”
+	day=“Cycle phase (std. day)”
 	rep=“Replicate: 1 or 2”
 	batch=“batch of measurement”
 	egf_con=“epidermal growth factor, conc. (ng/mL)”
@@ -60,8 +60,66 @@ label pid=“Study ID”
 	il12_i=“interleukin-12, ???”
 	il13_con=“interleukin-13, conc. (ng/mL)”
 	il13_i=“interleukin-13, ???”
-	
-
+	il15_con="interleukin-15, conc. (ng/mL)"
+	il15_i="interleukin-15, ???"
+	il17_con="interleukin-17,conc. (ng/mL)"
+	il17_i="interleukin-17, ???"
+	il1b_con="interleukin-1b, conc. (ng/mL)"
+	il1b_i="interleukin-1b, ???"
+	il1ra_con="interleukin-1ra, conc. (ng/mL)"
+	il1ra_i="interleukin-1ra, ???"
+	il2_con="interleukin-2, conc. (ng/mL)"
+	il2_i="interleukin-2, ???"
+	il2r_con="interleukin-2r, conc. (ng/mL)"
+	il2r_i="interleukin-2r, ???"
+	il4_con="interleukin-4, conc. (ng/mL)"
+	il4_i="interleukin-4, ???"
+	il5_con="interleukin-5, conc. (ng/mL)"
+	il5_i="interleukin-5, ???"
+	il6_con="interleukin-6, conc. (ng/mL)"
+	il6_i="interleukin-6, ???"
+	il7_con="interleukin-7, conc. (ng/mL)"
+	il7_i="interleukin-7, ???"
+	il8_con="interleukin-8, conc. (ng/mL)"
+	il8_i="interleukin-8, ???"
+	ip_10_con="ifng-inducable protein 10, conc. (ng/mL)"
+	ip_10_i="ifng-inducable protein 10, ???"
+	mcp1_con="monocyte chemoattractant protein 1, conc. (ng/mL)"
+	mcp1_i="monocyte chemoattractant protein 1, ???"
+	mig_con="monokine induced by ifng, conc. (ng/mL)"
+	mig_i="monokine induced by ifng, ???"
+	mip1a_con="macrophage inflam. protein 1a, conc. (ng/mL)"
+	mip1a_i="macrophage inflammatory protein 1a, ???"
+	mip1b_con="macrophage inflam. protein 1b, conc. (ng/mL)"
+	mip1b_i="macrophage inflam. protein 1b, ???"
+	rantes_con="rantes, conc. (ng/mL)"
+	rantes_i="rantes, ???"
+	tnfa_con="tumor necrosis factor a, conc. (ng/mL)"
+	tnfa_i="tumor necrosis factor a, ???"
+	vegf_con="vasc. endo. growth factor, conc. (ng/mL)"
+	vegf_i="vasc. endo. growth factor, ???"
+	bfgf_con="fibroblast growth factor b, conc. (ng/mL)"
+	bfgf_i="fibroblast growth factor b, ???";
+RUN;	
 
 
 *Code for formatting select Bicycle Study variables;
+
+PROC FORMAT CNTLOUT=biocycle_formats;
+VALUE ynform 0="No" 1="Yes";
+VALUE bmifmt 0="Underweight" 1="Normal" 2="Overweight" 3="Obese";
+VALUE hsfmt 0=">High School" 1="<=High School";
+VALUE maritalfmt 0="Not married" 1="Married";
+VALUE nullpfmt 0="Parous" 1="Nulliparous";
+VALUE pafmt 0="Low" 1="Moderate" 2="High";
+VALUE racefmt 0="White" 1="Black" 2="Other";
+VALUE anovfmt 0="Ov. cycle" 1="Anov. cycle";
+VALUE dayfmt 1="Menses (std. day 2)" 
+	2="Mid-follic. (std. day 7)" 
+	3="Late-follic. (std. day 12)" 
+	4="LH surge (std. day 13)" 
+	5="Exp. Ovul. (std. day 14)"
+	6="Early-lut. (std. day 18)"
+	7="Mid-lut. (std. day 22)"
+	8="Late-lut. (std. day 27)";
+RUN;
