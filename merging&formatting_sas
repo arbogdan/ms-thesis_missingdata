@@ -1,0 +1,24 @@
+# Merge BioCycle data sets and apply formats
+
+*Sort Biocycle data sets by "pid" variable;
+PROC SORT DATA=Biocycle_demographics;
+BY pid;
+RUN;
+
+PROC SORT DATA=Anov;
+BY pid;
+RUN;
+
+PROC SORT DATA=cytokines;
+BY pid;
+RUN;
+
+*Merge Biocycle data sets by "pid" variable;
+DATA bc_all;
+MERGE bc_demo bc_anov bc_cyto;
+BY pid;
+RUN;
+
+*Print to verify successful merging of data sets;
+PROC PRINT DATA=bc_all OBS=10;
+RUN;
