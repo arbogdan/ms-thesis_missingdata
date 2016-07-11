@@ -1,0 +1,67 @@
+#Code for renaming/relabeling Biocycle variables - SAS
+
+*Code for renaming and relabeling demographic BioCycle Study variables;
+
+DATA bc_demo;
+set Biocycle_demographics.sas7bdat
+(rename=(idnum=pid highschool=hs married=marital nulliparous=null_par 			      phycat=pa_cat racecat3=race screenage=age smoker=smk));
+label pid=“Study ID”
+	bc_ever=“Ever use birth control? (y/n)”
+	bmi=“Body mass index (kg/m^2)”
+	bmicat=“BMI categories: 0=under, 1=norm, 2=over, 3=obese”
+	hs=“High school education: 1=lt or eq, 0=gt”
+	marital=“Marital status: 1=married, 0=not”
+	null_par=“Nulliparous: 1=null, 2=parous”
+	parity=“Parity”
+	pa_cat=“Physical activity, baseline IPAQ”
+	race=“Race: white, black, other”
+	age=“Age at screening (years)”
+	smk=“Current smoker? (y/n)”;
+RUN;
+
+
+*Code for renaming and relabeling anovulation BioCycle Study variables;
+
+DATA bc_anov;
+set Anov.sas7bdat
+(rename=(idnum=pid Anov2=anov));
+label pid=“Study ID”
+	cycle=“Cycle indicator: 1st or 2nd”
+	anov=“Anovulatory cycle? (y/n)”;
+RUN;
+
+
+*Code for renaming and relabeling cytokine BioCycle Study variables;
+
+DATA bc_cyto;
+set cytokines.sas7dbat rename=(idnum=pid);
+label pid=“Study ID”
+	cycle=“Cycle indicator: 1st or 2nd”
+	day=“Cycle phase (stand. day)”
+	rep=“Replicate: 1 or 2”
+	batch=“batch of measurement”
+	egf_con=“epidermal growth factor, conc. (ng/mL)”
+	egf_i=“epidermal growth factor, ???”
+	eotaxin_con=“eotaxins, conc. (ng/mL)”
+	eotaxin_i=“eotaxins, ???”
+	gcsf_con=“granulocyte colony-stimulating factor, conc. (ng/mL)” 
+	gcsf_i=“granulocyte colony-stimulating factor, ???”
+	gmcsf_con=“granulocyte macrophage colony-stimulating factor, conc. (ng/mL)”
+	gmcsf_i=“granulocyte macrophage colony-stimulating factor, ???”
+	hfg_con=“hepatocyte growth factor, conc. (ng/mL)”
+	hfg_i=“hepatocyte growth factor, ???”
+	ifna_con=“interferon a, conc. (ng/mL)”
+	ifna_i=“interferon a, ???”
+	ifng_con=“interferon g, conc. (ng/mL)”
+	ifng_i=“interferon g, ???”
+	il10_con=“interleukin-10, conc. (ng/mL)”
+	il10_i=“interleukin-10, ???”
+	il12_con=“interleukin-12, conc. (ng/mL)”
+	il12_i=“interleukin-12, ???”
+	il13_con=“interleukin-13, conc. (ng/mL)”
+	il13_i=“interleukin-13, ???”
+	
+
+
+
+*Code for formatting select Bicycle Study variables;
