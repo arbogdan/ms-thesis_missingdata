@@ -1,0 +1,9 @@
+# Obtain univariate summary statistics on all variables
+
+PROCS to play with for univar/bivar: UNIVARIATE, NPAR1WAY, TTEST, FREQ, CORR, REG, GENMOD
+PROCS to play with for visualization: GPLOT, SGPLOT
+
+*Obtain summary statistics on all demographic variables;
+PROC UNIVARIATE DATA=bc_all;
+
+*STOP HERE, arb 11.07.16
