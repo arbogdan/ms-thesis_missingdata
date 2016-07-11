@@ -1,0 +1,39 @@
+# Obtain bivariate summary statistics on select variable pairings
+
+PROCS to play with for bivar: NPAR1WAY, TTEST, FREQ, CORR, REG, GENMOD
+PROCS to play with for visualization: GPLOT, SGPLOT
+
+**Obtain bivariate statistics on select demographic variables vs. cytokines & anovulation;
+*Continuous demographic variables vs. cytokines;
+PROC CORR DATA=bc_all PLOTS=MATRIX(HISTOGRAM);
+VAR bmi age day;
+WITH egf_con egf_i eotaxin_con eotaxin_i gcsf_con gcsf_i gmcsf_con gmcsf_i hfg_con hfg_i ifna_con ifna_i ifng_con ifng_i 
+    il10_con il10_i il12_con il12_i il13_con il13_i il15_con il15_i il17_con il17_i il1b_con il1b_i il1ra_con il1ra_i il2_con
+    il2_i il2r_con il2r_i il4_con il4_i il5_con il5_i il6_con il6_i il7_con il7_i il8_con il8_i ip_10_con ip_10_i mcp1_con 
+    mcp1_i mig_con mig_i mip1a_con mip1a_i mip1b_con mip1b_i rantes_con rantes_i tnfa_con tnfa_i vegf_con vegf_i bfgf_con
+    bfgf_i;
+RUN;
+
+*Continuous demographic variables vs. cytokines by anovulation;
+PROC CORR DATA=bc_all PLOTS=MATRIX(HISTOGRAM);
+BY anov;
+VAR bmi age day;
+WITH egf_con egf_i eotaxin_con eotaxin_i gcsf_con gcsf_i gmcsf_con gmcsf_i hfg_con hfg_i ifna_con ifna_i ifng_con ifng_i 
+    il10_con il10_i il12_con il12_i il13_con il13_i il15_con il15_i il17_con il17_i il1b_con il1b_i il1ra_con il1ra_i il2_con
+    il2_i il2r_con il2r_i il4_con il4_i il5_con il5_i il6_con il6_i il7_con il7_i il8_con il8_i ip_10_con ip_10_i mcp1_con 
+    mcp1_i mig_con mig_i mip1a_con mip1a_i mip1b_con mip1b_i rantes_con rantes_i tnfa_con tnfa_i vegf_con vegf_i bfgf_con
+    bfgf_i;
+RUN;
+
+*Menstural cycle day vs. continuous cytokines BY anovulation;
+PROC NPAR1WAY DATA=bc_all ANOVA MEDIAN WILCOXON;
+BY anov;
+CLASS day;
+VAR egf_con egf_i eotaxin_con eotaxin_i gcsf_con gcsf_i gmcsf_con gmcsf_i hfg_con hfg_i ifna_con ifna_i ifng_con ifng_i 
+    il10_con il10_i il12_con il12_i il13_con il13_i il15_con il15_i il17_con il17_i il1b_con il1b_i il1ra_con il1ra_i il2_con
+    il2_i il2r_con il2r_i il4_con il4_i il5_con il5_i il6_con il6_i il7_con il7_i il8_con il8_i ip_10_con ip_10_i mcp1_con 
+    mcp1_i mig_con mig_i mip1a_con mip1a_i mip1b_con mip1b_i rantes_con rantes_i tnfa_con tnfa_i vegf_con vegf_i bfgf_con
+    bfgf_i;
+RUN;
+
+*****STOP HERE, arb 11.07.16
