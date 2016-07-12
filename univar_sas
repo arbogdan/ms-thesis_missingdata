@@ -3,7 +3,19 @@
 PROCS to play with for univar/bivar: UNIVARIATE, NPAR1WAY, TTEST, FREQ, CORR, REG, GENMOD
 PROCS to play with for visualization: GPLOT, SGPLOT
 
-*Obtain summary statistics on all demographic variables;
-PROC UNIVARIATE DATA=bc_all;
+*Obtain summary statistics on all continuous variables;
+PROC UNIVARIATE DATA=bc_all CIPCTLDF;
+CLASS anov;
+HISTOGRAM bmi age;
+INSET N MEAN MEDIAN STD QRANGE (POSITION=NE);
+PPPLOT "vars";
+QQPLOT bmi age;
+VAR bmi age "vars";
+RUN;
 
-*STOP HERE, arb 11.07.16
+*Obtain summary statistics on all categorical variables;
+PROC FREQ DATA=bc_all;
+TABLES anov*(bc_ever bmicat hs marital nullpar parity pa_cat race smk);
+RUN;
+
+*STOP HERE, arb 12.07.16
