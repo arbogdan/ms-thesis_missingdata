@@ -8,9 +8,17 @@ PROC UNIVARIATE DATA=bc_all CIPCTLDF;
 CLASS anov;
 HISTOGRAM bmi age;
 INSET N MEAN MEDIAN STD QRANGE (POSITION=NE);
-PPPLOT "vars";
+PPPLOT egf_con egf_i eotaxin_con eotaxin_i gcsf_con gcsf_i gmcsf_con gmcsf_i hfg_con hfg_i ifna_con ifna_i ifng_con ifng_i 
+    il10_con il10_i il12_con il12_i il13_con il13_i il15_con il15_i il17_con il17_i il1b_con il1b_i il1ra_con il1ra_i il2_con
+    il2_i il2r_con il2r_i il4_con il4_i il5_con il5_i il6_con il6_i il7_con il7_i il8_con il8_i ip_10_con ip_10_i mcp1_con 
+    mcp1_i mig_con mig_i mip1a_con mip1a_i mip1b_con mip1b_i rantes_con rantes_i tnfa_con tnfa_i vegf_con vegf_i bfgf_con
+    bfgf_i;
 QQPLOT bmi age;
-VAR bmi age "vars";
+VAR bmi age egf_con egf_i eotaxin_con eotaxin_i gcsf_con gcsf_i gmcsf_con gmcsf_i hfg_con hfg_i ifna_con ifna_i ifng_con ifng_i 
+    il10_con il10_i il12_con il12_i il13_con il13_i il15_con il15_i il17_con il17_i il1b_con il1b_i il1ra_con il1ra_i il2_con
+    il2_i il2r_con il2r_i il4_con il4_i il5_con il5_i il6_con il6_i il7_con il7_i il8_con il8_i ip_10_con ip_10_i mcp1_con 
+    mcp1_i mig_con mig_i mip1a_con mip1a_i mip1b_con mip1b_i rantes_con rantes_i tnfa_con tnfa_i vegf_con vegf_i bfgf_con
+    bfgf_i;
 RUN;
 
 *Obtain summary statistics on all categorical variables;
